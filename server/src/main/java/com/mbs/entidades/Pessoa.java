@@ -8,9 +8,13 @@ import java.io.Serializable;
  */
 public class Pessoa implements Serializable{
     
+    private static final long serialVersionUID = 4893313136960255886L;
+	
     private String  nome;
     private Integer idade;
     private Endereco endereco;
+    
+    private transient float peso;
 
     public String getNome() {
         return nome;
@@ -34,6 +38,14 @@ public class Pessoa implements Serializable{
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public float getPeso() {
+        return peso;
+    }
+
+    public void setPeso(float peso) {
+        this.peso = peso;
     }
     
 }

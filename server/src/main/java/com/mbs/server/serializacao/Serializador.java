@@ -15,15 +15,15 @@ import java.util.Date;
  * @author marcelo
  * @param <T>
  */
-public class Arquivo<T> {
+public class Serializador {
 
     private JanelaPrincipal janelaPrincipal;
     
-    public Arquivo(JanelaPrincipal janelaPrincipal){
+    public Serializador(JanelaPrincipal janelaPrincipal){
         this.janelaPrincipal = janelaPrincipal;
     }
     
-    public void serializar(T type) {
+    public void serializar(Object type) {
         try {
             String nomeArquivo = criarNomeArquivo();
             FileOutputStream fOut = new FileOutputStream(nomeArquivo);
@@ -45,12 +45,12 @@ public class Arquivo<T> {
         return nomeArquivo;
     }
 
-    public T deserializar(String nomeArquivo) throws Exception {
+    public Object deserializar(String nomeArquivo) throws Exception {
         try {
             FileInputStream in = new FileInputStream(new File(nomeArquivo));
             ObjectInputStream input = new ObjectInputStream(in);
-             janelaPrincipal.escreverLog("Objeto deserializado no arquivo: " + nomeArquivo);
-            return (T) input.readObject();
+             janelaPrincipal.escreverLog("Objeto deserializado pelo arquivo: " + nomeArquivo);
+            return input.readObject();
         } catch (IOException | ClassNotFoundException e) {
              janelaPrincipal.escreverLog("Error: " + e.getMessage());
         }
